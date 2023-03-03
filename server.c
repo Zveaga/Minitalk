@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/21 12:54:02 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/02 17:21:14 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/03/03 17:38:34 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void SIGUSR_handler(int signum)
 	static int	bits = 0;
 	int	mask;
 	
-	mask = 0b10000000;	
+	mask = 0b10000000;
 	if (signum == SIGUSR1)
 	{
 		printf("0");
-		c = c ^ (mask >> bits);	
+		c = c ^ (mask >> bits);
 	}
 	else if (signum == SIGUSR2)
 	{
