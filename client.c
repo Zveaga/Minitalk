@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/21 12:54:07 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/03 18:12:14 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/03/07 12:00:04 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ void send_bit(char c, int pid)
 {
 	int	bits;
 	int	mask;
-	int	i;
 
-	i = 0;
 	bits = 0;
 	mask = 0b10000000;
 	while (bits++ < 8)
@@ -48,15 +46,20 @@ void send_bit(char c, int pid)
 		else
 			kill(pid, SIGUSR1);
 		mask >>= 1;
-		usleep(100);
+		usleep(50);
 	}
+}
+
+void	SIGUSR_handler(int signum)
+{
+	
 }
 
 int	main(int argc, char *argv[])
 {
 	int	pid;
 	int	i;
-	
+			
 	i = 0;
 	if (argc != 3)
 	{	printf("Client: Invalid argument number!\n");
@@ -68,5 +71,6 @@ int	main(int argc, char *argv[])
 		send_bit(argv[2][i], pid);
 		i++;
 	}
+	send_bit('\n', pid);
 	return (0);
 }
