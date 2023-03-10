@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/21 12:54:02 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/09 18:04:47 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/03/10 13:16:33 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,13 @@ void SIGUSR_handler(int signum, siginfo_t *info, void *context)
 		bits = 0;
 		c = 0b11111111;
 	}
-	if (kill(info->si_pid, SIGUSR1) == -1)
-		_error(pid_client);
-		
-	// if (c == 0)
-	// {
-	// 	printf("End of message!\n");
-	// 	kill(info->si_pid, SIGUSR2);
-	// }
+	kill(info->si_pid, SIGUSR1);
+	//_error(pid_client);
+	if (c == 0)
+	{
+		printf("End of message!\n");
+		kill(info->si_pid, SIGUSR2);
+	}
 	
 }
 
