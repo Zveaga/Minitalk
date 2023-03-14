@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/21 12:54:02 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/10 13:16:33 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/03/14 18:35:28 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,44 +19,44 @@ void _error(int pid)
 	exit(EXIT_FAILURE);
 }
 
-// void	append_char(char c, char *message)
-// {
-	
-// }
-
 void SIGUSR_handler(int signum, siginfo_t *info, void *context)
 {
-	static	char	c = 0b11111111;
-	static	int		bits = 0;
-	static	int		pid_client = 0;
-	static	int		mask = 0;
-	//static	char	*message;
-	(void)			context;
-	
+	static char	c = 0b11111111;
+	static int	bits = 0;
+	static int	pid_client = 0;
+	static int	mask = 0;
+
+	(void) context;
 	mask = 0b10000000;
 	pid_client = info->si_pid;
 	if (signum == SIGUSR1)       // "0" is received
 		c = c ^ (mask >> bits);  
-	 
 	else if (signum == SIGUSR2)  // "1" is received
 		c = c | (mask >> bits);
 	bits++;
-	if (bits == 8)               // Receive 1 char
+	if (bits == 8)
 	{
 		write(1, &c, 1);
 		bits = 0;
 		c = 0b11111111;
 	}
-	kill(info->si_pid, SIGUSR1);
-	//_error(pid_client);
-	if (c == 0)
+	
+	if (c != '\0')
+	{
+		if (kill(info->si_pid, SIGUSR1) == -1)
+			_error(pid_client);
+	}	
+	
+	else if (c == '\0')
 	{
 		printf("End of message!\n");
-		kill(info->si_pid, SIGUSR2);
-	}
-	
+		if (kill(info->si_pid, SIGUSR2) == -1)
+			_error(pid_client);
+		c = 0b11111111;
+		bits = 0;
+		mask = 0b10000000;
+	}	
 }
-
 int	main(void)
 {
 	pid_t				pid;
@@ -64,7 +64,7 @@ int	main(void)
 	
 	pid = getpid();
 	printf("Server PID: %d\n", pid);
-	action.sa_flags = SA_SIGINFO | SA_RESTART;
+	action.sa_flags = SA_RESTART | SA_NODEFER;
 	action.sa_sigaction = SIGUSR_handler;
 	sigemptyset(&action.sa_mask);
 	sigaction(SIGUSR1, &action, NULL);

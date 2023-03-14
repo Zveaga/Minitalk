@@ -6,14 +6,13 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/21 12:54:07 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/10 14:54:18 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/03/14 18:36:02 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minitalk.h"
 
 volatile int bit_confirmed = 0;
-char *string = NULL;
 
 void	_error()
 {
@@ -21,32 +20,54 @@ void	_error()
 	exit(EXIT_FAILURE);
 }
 
+void	send_null(int pid)
+{
+	static int	i = 0;
+	
+	while (i++ != 8)
+	{
+		if (kill(pid, SIGUSR1) == -1)
+			_error();
+	}
+	i = 0;
+}
+
 void	send_bit(char *message, int pid)
 {
-	int 	bits;
-	int 	mask;
-	int		i;
-
-	bits = 0;
-	mask = 0b10000000;
+	int	bits = 0;
+	int	mask = 0b10000000;
+	int	i;
+	
 	i = 0;
-		
 	while (message[i])
 	{
-		bits = 0;
 		while (bits++ < 8)
 		{
 			bit_confirmed = 0;
 			if (message[i] & mask)
-				kill(pid, SIGUSR2);
+			{
+				if (kill(pid, SIGUSR2) == -1)
+					_error();
+			}
 			else
-				kill(pid, SIGUSR1);
+			{
+				if (kill(pid, SIGUSR1) == -1)
+					_error();
+			}
 			while(!bit_confirmed);
 			mask >>= 1;
 		}
+		// if (message[i] == '\0')
+		// {
+		// 	printf("NULL");
+		// 	send_null(pid);
+		// 	//break;
+		// }
 		i++;
+		bits = 0;
 		mask = 0b10000000;
 	}
+	//send_null(pid);
 }
 
 void	SIGUSR_handler(int signum)
@@ -54,11 +75,10 @@ void	SIGUSR_handler(int signum)
 	if (signum == SIGUSR1)
 	{
 		bit_confirmed = 1;
-		usleep(100);
 	}
 	else if (signum == SIGUSR2)
 	{
-		printf("Message successfully sent!\n");
+		printf("\nMessage successfully sent!\n");
 		exit(EXIT_SUCCESS);
 	}
 }
@@ -74,7 +94,7 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	pid = atoi(argv[1]);
-	action.sa_flags = SA_RESTART | SA_SIGINFO;
+	//action.sa_flags = SA_NODEFER;
 	action.sa_handler = SIGUSR_handler;
 	sigemptyset(&action.sa_mask);
 	sigaction(SIGUSR1, &action, NULL);
