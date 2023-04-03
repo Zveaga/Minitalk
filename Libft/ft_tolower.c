@@ -6,13 +6,11 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/15 13:29:45 by raanghel      #+#    #+#                 */
-/*   Updated: 2022/11/11 17:36:35 by raanghel      ########   odam.nl         */
+/*   Updated: 2022/11/18 15:49:46 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include"libft.h"
-#include<stdio.h>
-#include<string.h>
+#include"libft.h"
 
 int	ft_tolower(int c)
 {

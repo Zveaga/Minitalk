@@ -6,13 +6,11 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/11 15:30:42 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/08 15:27:53 by rares         ########   odam.nl         */
+/*   Updated: 2022/11/18 14:03:36 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
-#include<stdio.h>
-#include<string.h>
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
@@ -22,7 +20,9 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	cast_dest = (char *)dest;
 	cast_src = (const char *)src;
 	if (cast_dest == NULL && cast_src == NULL)
+	{
 		return (NULL);
+	}
 	while (n > 0)
 	{
 		*cast_dest = *cast_src;

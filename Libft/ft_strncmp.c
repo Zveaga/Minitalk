@@ -6,22 +6,11 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 11:50:56 by raanghel      #+#    #+#                 */
-/*   Updated: 2022/11/16 17:34:14 by raanghel      ########   odam.nl         */
+/*   Updated: 2022/11/18 13:02:27 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
-#include<string.h>
-#include<stdio.h>
-
-// int difference(char a, char b)
-// {
-// 	if ((unsigned char)a != (unsigned char )b)
-// 	{
-// 		return ((unsigned char)a - (unsigned char)b);
-// 	}
-// 	return (0);
-// }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -37,8 +26,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		}
 		else if (*s1 == '\0' || *s2 == '\0')
 		{
-		/* returns the pointer to the position before the '\0' */
-			return ((*s1 - 1) - (*s2 - 1)); 
+			return ((*s1 - 1) - (*s2 - 1));
 		}
 		n--;
 		s1++;
@@ -49,8 +37,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 // int main(void)
 // {
-// 	char *s1 = "atoms\0\0\0\0";
-//  	char *s2 = "atoms\0abc";
+// 	char *s1 = "atoms \0";
+//  	char *s2 = "atomsa ";
 
 // 	printf("Own:   %d\n", ft_strncmp(s1, s2, 8));
 // 	printf("Real:  %d\n", strncmp(s1, s2, 8));

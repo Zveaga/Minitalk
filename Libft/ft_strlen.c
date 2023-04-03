@@ -6,13 +6,11 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 13:33:58 by raanghel      #+#    #+#                 */
-/*   Updated: 2022/11/15 12:06:26 by raanghel      ########   odam.nl         */
+/*   Updated: 2022/11/18 13:40:02 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
-#include<string.h>
-#include<stdio.h>
 
 int	ft_strlen(const char *s)
 {

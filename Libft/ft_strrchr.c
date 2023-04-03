@@ -6,13 +6,11 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/27 12:20:38 by raanghel      #+#    #+#                 */
-/*   Updated: 2022/11/16 17:34:38 by raanghel      ########   odam.nl         */
+/*   Updated: 2022/11/18 13:40:28 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
-#include<string.h>
-#include<stdio.h>
 
 char	*ft_strrchr(const char *str, int c)
 {
@@ -37,21 +35,4 @@ char	*ft_strrchr(const char *str, int c)
 // 	char *str = "bbabbbbabb";
 // 	printf("Own:  %s\n", ft_strrchr(str, 'a'));
 // 	printf("Real: %s\n", strrchr(str, 'a'));
-// }
-
-
-// char	*ft_strrchr(const char *str, int c)
-// {
-// 	int	i;
-
-// 	i = strlen(str);
-// 	while (i >= 0)
-// 	{
-// 		if (str[i] == (char)c)
-// 		{
-// 			return ((char *)(str + i));
-// 		}
-// 		i--;
-// 	}
-// 	return (0);
 // }

@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/31 11:23:57 by raanghel      #+#    #+#                 */
-/*   Updated: 2022/11/16 17:25:03 by raanghel      ########   odam.nl         */
+/*   Updated: 2022/11/18 15:20:39 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static int	_sub_str_count(char const *s, char c)
 	{
 		if (s[i] != c)
 			i++;
-		if (s[i] == c)
+		if (s[i] == c && s[i])
 		{
 			count++;
 			i++;
 		}
-		while (s[i] == c)
+		while (s[i] == c && s[i] != '\0')
 			i++;
 	}
 	if (i > 0 && s[len_s - 1] != c)
@@ -47,7 +47,7 @@ static int	_sub_str_len(char const *s, char c)
 
 	i = 0;
 	len = 0;
-	while (s[i] == c)
+	while (s[i] == c && s[i])
 		i++;
 	while (s[i] != c)
 	{
@@ -119,7 +119,7 @@ char	**ft_split(char	const *s, char c)
 // 	int		i;
 
 // 	i = 0;
-// 	result = ft_split(" ", ' ');
+// 	result = ft_split("nonempty", '\0');
 // 	while (result[i])
 // 	{
 // 		printf("%s\n", result[i]);

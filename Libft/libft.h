@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/11 18:24:40 by raanghel      #+#    #+#                 */
-/*   Updated: 2022/11/16 13:16:28 by raanghel      ########   odam.nl         */
+/*   Updated: 2022/11/18 13:42:42 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include<stdlib.h>
 # include<unistd.h>
-# include<stdio.h> //remove!!!
 
 int		ft_atoi(const char *str);
 

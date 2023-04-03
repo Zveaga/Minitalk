@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/15 15:56:35 by raanghel      #+#    #+#                 */
-/*   Updated: 2022/11/16 13:57:46 by raanghel      ########   odam.nl         */
+/*   Updated: 2022/11/18 15:25:36 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_lstsize(t_list *lst)
 	int	count;
 
 	count = 0;
-	while (lst != '\0')
+	while (lst != NULL)
 	{
 		lst = lst->next;
 		count++;

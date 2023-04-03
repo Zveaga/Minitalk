@@ -6,13 +6,11 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/14 17:30:35 by raanghel      #+#    #+#                 */
-/*   Updated: 2022/11/11 17:36:59 by raanghel      ########   odam.nl         */
+/*   Updated: 2022/11/18 15:50:09 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include"libft.h"
-#include<ctype.h>
-#include<stdio.h>
+#include"libft.h"
 
 int	ft_toupper(int c)
 {

@@ -6,14 +6,11 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 13:59:51 by raanghel      #+#    #+#                 */
-/*   Updated: 2022/11/16 13:42:16 by raanghel      ########   odam.nl         */
+/*   Updated: 2022/11/18 13:38:49 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
-#include<stdlib.h>
-#include<stdio.h>
-#include<limits.h>
 
 int	len_int(int n)
 {

@@ -6,13 +6,11 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 16:10:51 by raanghel      #+#    #+#                 */
-/*   Updated: 2022/12/07 19:36:59 by rares         ########   odam.nl         */
+/*   Updated: 2022/11/18 13:12:00 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
-#include<string.h>
-#include<stdio.h>
 
 int	ft_strlcat(char *dst, const char *src, size_t dst_size)
 {
@@ -44,20 +42,20 @@ int	ft_strlcat(char *dst, const char *src, size_t dst_size)
 // 	char dst1[14] = "a";
 // 	char src1[] = "lorem ipsum dolor sit amet";
 
-// 	//char dst2[] = "a";
-// 	//char src2[] = "lorem ipsum dolor sit amet";
+// 	char dst2[14] = "a";
+// 	char src2[] = "lorem ipsum dolor sit amet";
 
 // 	int own_res;
-// 	//int real_res;
+// 	int real_res;
 
 // 	own_res = ft_strlcat(dst1, src1, 15);
-// 	//real_res = strlcat(dst2, src2, 15);
+// 	real_res = strlcat(dst2, src2, 15);
 
 // 	printf("Own res:  %d\n", own_res);
-// 	//printf("Own dst:  %s\n\n", dst1);
+// 	printf("Own dst:  %s\n\n", dst1);
 
-// 	//printf("Real res:  %d\n", real_res);
-// 	//printf("Real dst:  %s\n", dst2);
+// 	printf("Real res:  %d\n", real_res);
+// 	printf("Real dst:  %s\n", dst2);
 // }
 
 /* if (dst_len < size - 1 && size > 0)

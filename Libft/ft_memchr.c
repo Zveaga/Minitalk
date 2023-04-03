@@ -6,13 +6,11 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 11:50:26 by raanghel      #+#    #+#                 */
-/*   Updated: 2022/11/16 15:36:43 by raanghel      ########   odam.nl         */
+/*   Updated: 2022/11/18 15:48:29 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
-#include<stdio.h>
-#include<string.h>
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {

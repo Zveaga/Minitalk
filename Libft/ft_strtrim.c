@@ -6,13 +6,11 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/26 17:49:20 by raanghel      #+#    #+#                 */
-/*   Updated: 2022/11/11 18:12:20 by raanghel      ########   odam.nl         */
+/*   Updated: 2022/11/18 13:40:37 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
-#include<stdio.h>
-#include<stdlib.h>
 
 static char	find_c(char c, char const *set)
 {

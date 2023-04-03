@@ -6,12 +6,11 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/10 17:17:32 by raanghel      #+#    #+#                 */
-/*   Updated: 2022/11/10 19:36:38 by raanghel      ########   odam.nl         */
+/*   Updated: 2022/11/18 13:40:10 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
-#include <stdlib.h>
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
@@ -60,6 +59,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 // int main(void)
 // {
 // 	char *str;
-// 	str = ft_strmapi("hahahaahaha", test);
+// 	str = ft_strmapi("aaaaaaaaa", test);
 // 	printf("%s\n", str);
 // }
