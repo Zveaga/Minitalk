@@ -1,24 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   minitalk.h                                         :+:    :+:            */
+/*   ft_print_ptr.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/02/21 14:55:35 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/05/02 19:47:27 by rares         ########   odam.nl         */
+/*   Created: 2023/01/13 14:24:04 by raanghel      #+#    #+#                 */
+/*   Updated: 2023/01/19 12:36:00 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include"ft_printf.h"
 
-#include"libft/libft.h"
-#include"printf/ft_printf.h"
-#include<signal.h>
-#include<unistd.h>
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+int	len_ptr(unsigned long n)
+{
+	int	len;
 
-#endif
+	len = 0;
+	while (n > 0)
+	{
+		n /= 16;
+		len++;
+	}
+	return (len);
+}
+
+int	ft_print_ptr(unsigned long n)
+{
+	char	*dict;
+	int		ret;
+
+	ret = len_ptr(n);
+	dict = "0123456789abcdef";
+	if (n == 0)
+		ret += 1;
+	if (n >= 0 && n < 16)
+		ft_print_char(dict[n]);
+	else
+	{
+		ft_print_ptr(n / 16);
+		ft_print_ptr(n % 16);
+	}
+	return (ret);
+}

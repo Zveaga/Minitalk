@@ -8,11 +8,11 @@ all: server client
 
 bonus: server client
 
-server: server.o libft
-	$(CC) -o $@ $< -Llibft -lft
+server: server.o libft printf
+	$(CC) -o $@ $< -Llibft -lft -Lprintf -lftprintf
 
-client: client.o libft
-	$(CC) -o $@ $< -Llibft -lft
+client: client.o libft printf
+	$(CC) -o $@ $<  -Llibft -lft -Lprintf -lftprintf
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $?
@@ -20,13 +20,17 @@ client: client.o libft
 libft:
 	make -C libft
 
+printf:
+	make -C printf
+
 clean:
 	rm -f $(OBJECTS)
 	make -C libft clean
+	make -C printf clean
 	
 fclean: clean
-	rm -f server client libft/libft.a
+	rm -f server client libft/libft.a printf/libftprintf.a
 
 re: fclean all
 
-.PHONY: all bonus libft clean fclean re
+.PHONY: all bonus libft printf clean fclean re

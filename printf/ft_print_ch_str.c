@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   minitalk.h                                         :+:    :+:            */
+/*   ft_print_ch_str.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/02/21 14:55:35 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/05/02 19:47:27 by rares         ########   odam.nl         */
+/*   Created: 2022/11/22 13:39:58 by raanghel      #+#    #+#                 */
+/*   Updated: 2023/01/19 12:35:53 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include"ft_printf.h"
 
-#include"libft/libft.h"
-#include"printf/ft_printf.h"
-#include<signal.h>
-#include<unistd.h>
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+int	ft_print_char(int c)
+{
+	write(1, &c, 1);
+	return (1);
+}
 
-#endif
+int	ft_print_str(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str == 0)
+	{
+		write(1, "(null)", 6);
+		i += 6;
+		return (i);
+	}
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	return (i);
+}

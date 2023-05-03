@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/21 12:54:02 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/15 16:54:05 by rares         ########   odam.nl         */
+/*   Updated: 2023/05/03 11:12:33 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void _error(int pid)
 {
-	printf("SERVER: unexpected error!");
+	ft_printf("SERVER: unexpected error!\n");
 	kill(pid, SIGUSR2);
 	exit(EXIT_FAILURE);
 }
 
 void	string_end(int pid_client)
 {
-	printf("\nMessage successfully received! Ready to receive another.\n");
+	ft_printf("\nMessage successfully received! Ready to receive another.\n");
 		if (kill(pid_client, SIGUSR2) == -1)
 			_error(pid_client);
 }
@@ -44,7 +44,7 @@ void sig_handler(int signum, siginfo_t *info, void *context)
 		write(1, &c, 1);
 		bits = 0;
 		c = 0b11111111;
-	}		
+	}
 	if (c == '\0')
 	{
 		string_end(info->si_pid);
@@ -60,7 +60,7 @@ int	main(void)
 	struct sigaction 	action;
 	
 	pid = getpid();
-	printf("Server PID: %d\n", pid);
+	ft_printf("Server PID: %d\n", pid);
 	action.sa_flags = SA_RESTART | SA_NODEFER;
 	action.sa_sigaction = sig_handler;
 	sigemptyset(&action.sa_mask);

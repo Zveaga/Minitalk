@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/21 12:54:07 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/03/15 16:52:41 by rares         ########   odam.nl         */
+/*   Updated: 2023/05/03 11:10:42 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ volatile int bit_confirmed = 0;
 
 void	_error()
 {
-	printf("CLIENT: unexpected error!");
+	ft_printf("CLIENT: unexpected error!\n");
 	exit(EXIT_FAILURE);
 }
 
@@ -62,7 +62,7 @@ void	sig_handler(int signum)
 		bit_confirmed = 1;
 	else if (signum == SIGUSR2)
 	{
-		printf("Message successfully sent!\n");
+		//ft_printf("Message successfully sent!\n");
 		exit(EXIT_SUCCESS);
 	}
 }
@@ -72,10 +72,10 @@ int	main(int argc, char **argv)
 	int					pid;			
 	struct sigaction	action;
 	if (argc != 3)
-	{	printf("Client: Invalid argument number!\n");
+	{	ft_printf("Client: Invalid argument number!\n");
 		exit(EXIT_FAILURE);
 	}
-	pid = atoi(argv[1]);
+	pid = ft_atoi(argv[1]);
 	action.sa_handler = sig_handler;
 	sigemptyset(&action.sa_mask);
 	sigaction(SIGUSR1, &action, NULL);
@@ -84,27 +84,3 @@ int	main(int argc, char **argv)
 	send_message("\n", pid);
 	return (0);
 }
-
-
-
-// void	send_message(char c, int pid)
-// {
-// 	int 	bits;
-// 	int 	mask;
-
-// 	bits = 0;
-// 	mask = 0b10000000;
-// 	while (bits++ < 8)
-// 	{
-// 		bit_confirmed = 0;
-// 		if (c & mask)
-// 		{
-// 			if(kill(pid, SIGUSR2) == -1)
-// 				_error();
-// 		}
-// 		else
-// 			kill(pid, SIGUSR1);
-// 		while(!bit_confirmed);
-// 		mask >>= 1;
-// 	}
-// }
