@@ -6,13 +6,13 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/21 12:54:02 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/05/03 11:12:33 by rares         ########   odam.nl         */
+/*   Updated: 2023/05/05 18:03:02 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minitalk.h"
 
-void _error(int pid)
+void	_error(int pid)
 {
 	ft_printf("SERVER: unexpected error!\n");
 	kill(pid, SIGUSR2);
@@ -22,11 +22,11 @@ void _error(int pid)
 void	string_end(int pid_client)
 {
 	ft_printf("\nMessage successfully received! Ready to receive another.\n");
-		if (kill(pid_client, SIGUSR2) == -1)
-			_error(pid_client);
+	if (kill(pid_client, SIGUSR2) == -1)
+		_error(pid_client);
 }
 
-void sig_handler(int signum, siginfo_t *info, void *context)
+void	sig_handler(int signum, siginfo_t *info, void *context)
 {
 	static char	c = 0b11111111;
 	static int	bits = 0;
@@ -35,7 +35,7 @@ void sig_handler(int signum, siginfo_t *info, void *context)
 	(void) context;
 	mask = 0b10000000;
 	if (signum == SIGUSR1)       // "0" is received
-		c = c ^ (mask >> bits);  
+		c = c ^ (mask >> bits);
 	else if (signum == SIGUSR2)  // "1" is received
 		c = c | (mask >> bits);
 	bits++;

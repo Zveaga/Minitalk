@@ -6,15 +6,15 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/21 12:54:07 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/05/03 11:10:42 by rares         ########   odam.nl         */
+/*   Updated: 2023/05/05 18:17:13 by raanghel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minitalk.h"
 
-volatile int bit_confirmed = 0;
+volatile int g_bit_confirmed = 0;
 
-void	_error()
+void	_error(void)
 {
 	ft_printf("CLIENT: unexpected error!\n");
 	exit(EXIT_FAILURE);
@@ -38,16 +38,17 @@ void	send_message(char *message, int pid)
 {
 	static int	bits = 0;
 	static int	mask = 0b10000000;
-	int	i;
-	
+	int			i;
+
 	i = 0;
 	while (1)
 	{
 		while (bits++ < 8)
 		{
-			bit_confirmed = 0;
+			g_bit_confirmed = 0;
 			send_char(message[i], pid, mask);
-			while(!bit_confirmed);
+			while (!g_bit_confirmed)
+				;
 			mask >>= 1;
 		}
 		i++;
@@ -59,10 +60,10 @@ void	send_message(char *message, int pid)
 void	sig_handler(int signum)
 {
 	if (signum == SIGUSR1)
-		bit_confirmed = 1;
+		g_bit_confirmed = 1;
 	else if (signum == SIGUSR2)
 	{
-		//ft_printf("Message successfully sent!\n");
+		ft_printf("Message successfully sent!\n");
 		exit(EXIT_SUCCESS);
 	}
 }
@@ -71,8 +72,10 @@ int	main(int argc, char **argv)
 {
 	int					pid;			
 	struct sigaction	action;
+
 	if (argc != 3)
-	{	ft_printf("Client: Invalid argument number!\n");
+	{
+		ft_printf("Client: Invalid argument number!\n");
 		exit(EXIT_FAILURE);
 	}
 	pid = ft_atoi(argv[1]);

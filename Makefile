@@ -8,19 +8,19 @@ all: server client
 
 bonus: server client
 
-server: server.o libft printf
-	$(CC) -o $@ $< -Llibft -lft -Lprintf -lftprintf
+server: server.o libft/libft.a printf/libftprintf.a
+	$(CC) -o $@ $^ -Llibft -lft -Lprintf -lftprintf
 
-client: client.o libft printf
-	$(CC) -o $@ $<  -Llibft -lft -Lprintf -lftprintf
+client: client.o libft/libft.a printf/libftprintf.a
+	$(CC) -o $@ $^  -Llibft -lft -Lprintf -lftprintf
 
 %.o: %.c
-	$(CC) -c $(CFLAGS) $?
+	$(CC) -c $(CFLAGS) $< -o $@
 
-libft:
+libft/libft.a: libft/*.c libft/*.h
 	make -C libft
 
-printf:
+printf/libftprintf.a: printf/*.c printf/*.h
 	make -C printf
 
 clean:
