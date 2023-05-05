@@ -6,7 +6,7 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/21 12:54:02 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/05/05 18:03:02 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/05/05 20:09:47 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	sig_handler(int signum, siginfo_t *info, void *context)
 
 	(void) context;
 	mask = 0b10000000;
-	if (signum == SIGUSR1)       // "0" is received
+	if (signum == SIGUSR1)
 		c = c ^ (mask >> bits);
-	else if (signum == SIGUSR2)  // "1" is received
+	else if (signum == SIGUSR2)
 		c = c | (mask >> bits);
 	bits++;
 	if (bits == 8 && c != '\0')
@@ -54,11 +54,12 @@ void	sig_handler(int signum, siginfo_t *info, void *context)
 	if (kill(info->si_pid, SIGUSR1) == -1)
 		_error(info->si_pid);
 }
+
 int	main(void)
 {
+	struct sigaction	action;
 	pid_t				pid;
-	struct sigaction 	action;
-	
+
 	pid = getpid();
 	ft_printf("Server PID: %d\n", pid);
 	action.sa_flags = SA_RESTART | SA_NODEFER;

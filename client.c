@@ -6,13 +6,13 @@
 /*   By: raanghel <raanghel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/21 12:54:07 by raanghel      #+#    #+#                 */
-/*   Updated: 2023/05/05 18:17:13 by raanghel      ########   odam.nl         */
+/*   Updated: 2023/05/05 20:10:09 by rares         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minitalk.h"
 
-volatile int g_bit_confirmed = 0;
+volatile int	g_bit_confirmed = 0;
 
 void	_error(void)
 {
